@@ -1,0 +1,4 @@
+quixstreams
+numpy
+streamlit
+kafka-python
