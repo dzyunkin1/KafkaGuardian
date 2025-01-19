@@ -2,21 +2,23 @@ import threading
 import time
 from numpy.random import normal
 from kafka import KafkaProducer
+from numpy.random import random
 
 
 class User:
-    def __init__(self, producer: KafkaProducer, topic, mean, std):
+    def __init__(self, producer: KafkaProducer, topic: str, mean: float, std: float):
         self.producer = producer
         self.topic = topic
         self.mean = mean
         self.std = std
         self._stop_event = threading.Event()
         self.message_count = 0
+        self.username = random(size=1) * 100
 
     def generate_messages(self) -> None:
         self._stop_event.clear()
         while not self._stop_event.is_set():
-            message = f"User {id(self)} writing message {self.message_count}"
+            message = f"User {self.username[0]} writing message {self.message_count}"
             self.message_count += 1
 
             try:

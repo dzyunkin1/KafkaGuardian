@@ -1,9 +1,10 @@
 from objects.User import User
+from kafka import KafkaProducer
 from typing import List
 
 
 class UserFactory:
-    def __init__(self, producer, topic):
+    def __init__(self, producer: KafkaProducer, topic: str):
         self.producer = producer
         self.topic = topic
 
